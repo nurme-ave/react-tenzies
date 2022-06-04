@@ -8,6 +8,15 @@ import Confetti from 'react-confetti'
 function App() {
   const [dice, setDice] = useState(allNewDice())
   const [tenzies, setTenzies] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth)
+      setWindowHeight(window.innerHeight)
+      })
+    }, [])
 
   useEffect(() => {
     const allDiceHeld = dice.every(die => die.isHeld)
@@ -16,7 +25,6 @@ function App() {
 
     if (allDiceHeld && allSameValue) {
       setTenzies(true)
-      console.log("You won!")
     }
   }, [dice])
 
@@ -64,10 +72,11 @@ function App() {
       holdDice={() => holdDice(die.id)} 
     />)
 
+
   return (
     <main className="main-container">
       <section className="section-container">
-        {tenzies && <Confetti />}
+        {tenzies && <Confetti width={windowWidth - 100} height={windowHeight - 100}/>}
         <h1 className="heading">Tenzies</h1>
         <p>
           Roll until all dice are the same. Click each die to freeze it at its
