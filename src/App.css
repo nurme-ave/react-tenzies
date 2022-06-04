@@ -4,7 +4,6 @@
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  padding: 1em;
   background-color: blueviolet;
   overflow: hidden;
 }
@@ -14,11 +13,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  max-width: 768px;
   gap: 2em;
-  /* max-width: 500px; */
-  padding: 2em 1em;
+  padding: 3em 1em;
   border: 1px solid #ccc;
-  border-radius: .5em;
   background-color: #F5F5F5;
 }
 
@@ -36,9 +35,9 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2em;
-  height: 2em;
-  font-size: 1.4rem;
+  width: 2.2em;
+  height: 2.2em;
+  font-size: 1.6rem;
   border-radius: .5em;
   color: #000;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
@@ -80,7 +79,8 @@ p {
 
   .section-container {
     gap: 3em;
-    padding: 3em 5em;
+    padding: 4em 5em;
+    border-radius: .5em;
   }
 
   .boxes-list {
@@ -90,7 +90,6 @@ p {
   .box {
     width: 3em;
     height: 3em;
-    font-size: 1.6rem;
   }
 }
 
