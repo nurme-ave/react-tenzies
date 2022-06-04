@@ -76,7 +76,7 @@ function App() {
   return (
     <main className="main-container">
       <section className="section-container">
-        {tenzies && <Confetti width={windowWidth - 100} height={windowHeight - 100}/>}
+        {tenzies && <Confetti width={windowWidth - 25} height={windowHeight - 25}/>}
         <h1 className="heading">Tenzies</h1>
         <p>
           Roll until all dice are the same. Click each die to freeze it at its
