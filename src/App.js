@@ -2,8 +2,7 @@ import './App.css';
 import Die from './components/Die';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
-// import useWindowSize from 'react-use/lib/useWindowSize'
-// import Confetti from 'react-confetti'
+import Confetti from 'react-confetti'
 
 
 function App() {
@@ -57,6 +56,7 @@ function App() {
   return (
     <main className="main-container">
       <section className="section-container">
+        {tenzies && <Confetti />}
         <h1 className="heading">Tenzies</h1>
         <p>
           Roll until all dice are the same. Click each die to freeze it at its
