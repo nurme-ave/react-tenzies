@@ -1,24 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import Die from './components/Die';
+import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 function App() {
+  const [dice, setDice] = useState(allNewDice())
+  
+  function allNewDice() {
+    const newDiceArr = [];
+    
+    for (let i = 0; i < 10; i++) {
+      newDiceArr.push({
+        value: Math.ceil(Math.random() * 10),
+        isHeld: false,
+        id: nanoid()
+      })
+    }
+    console.log(newDiceArr)
+    return newDiceArr
+  }
+  
+  const diceElements = dice.map(die => <Die value={die.value} key={die.id} />)
+
+  function rollDice() {
+    setDice(allNewDice);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <main className="main-container">
+      <section className="section-container">
+        <h1 className="heading">Tenzies</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Roll until all dice are the same. Click each die to freeze it at its
+          current value between rolls.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <ul className="boxes-list">
+          { diceElements }
+        </ul>
+        <button className="roll-button" onClick={ rollDice }>Roll</button>
+      </section>
+    </main>
   );
 }
 
