@@ -72,6 +72,12 @@ p {
 
 
 /* MEDIA QUERIES */
+@media screen and (min-width: 360px) {
+  .container {
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
 @media screen and (min-width: 768px) {
   .main-container {
     padding: 3em 5em;
