@@ -19,13 +19,15 @@ function App() {
     return newDiceArr
   }
   
-  const diceElements = dice.map(die => <Die value={die.value} isHeld={die.isHeld} key={die.id} />)
-
   function rollDice() {
     setDice(allNewDice);
   }
-
   
+  function holdDice(id) {
+    console.log(id)
+  }
+  
+  const diceElements = dice.map(die => <Die value={die.value} isHeld={die.isHeld} key={die.id} holdDice={() => holdDice(die.id)} />)
 
   return (
     <main className="main-container">

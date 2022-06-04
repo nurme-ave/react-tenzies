@@ -5,7 +5,11 @@ function Die(props) {
 
   return (
     <li 
-      className="box" style={styles}>{props.value}
+      className="box" 
+      style={styles}
+      onClick={props.holdDice}
+      >
+        {props.value}
     </li>
   )
 }
