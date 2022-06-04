@@ -10,6 +10,7 @@ function App() {
   const [tenzies, setTenzies] = useState(false)
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -47,11 +48,14 @@ function App() {
   
   function rollDice() {
     if (!tenzies) {
+      setCount(prevState => prevState + 1)
+      console.log(count)
       setDice(oldDice => oldDice.map(die => {
           return die.isHeld ? die : generateNewDie()
       }))
     } else {
       setTenzies(false)
+      setCount(0)
       setDice(allNewDice)
     }
   }
@@ -79,8 +83,9 @@ function App() {
         {tenzies && <Confetti width={windowWidth - 5} height={windowHeight - 5}/>}
         <h1 className="heading">Tenzies</h1>
         <p>
-          Roll until all dice are the same. Click each die to freeze it at its
-          current value between rolls.
+          {tenzies ? 
+          `Congratulations! It took you ${count} clicks to win.` : 
+          "Roll until all dice are the same. Click each die to freeze it at its current value between rolls."}
         </p>
         <ul className="boxes-list">
           { diceElements }
