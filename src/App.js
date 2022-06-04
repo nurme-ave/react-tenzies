@@ -6,24 +6,6 @@ import Confetti from 'react-confetti'
 
 
 function App() {
-  /* 
-  Fixing the mobile viewport problem with 'height: 100vh'
-  which does not apply correctly on mobile devices due to
-  the address bar on top of the screen.
- */
-
-  // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-  let vh = window.innerHeight * 0.01;
-  // Then we set the value in the --vh custom property to the root of the document
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-  // We listen to the resize event
-  window.addEventListener('resize', () => {
-    // We execute the same script as before
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  });
-
   const [dice, setDice] = useState(allNewDice())
   const [tenzies, setTenzies] = useState(false)
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -94,7 +76,7 @@ function App() {
   return (
     <main className="main-container">
       <section className="section-container">
-        {tenzies && <Confetti width={windowWidth - 10} height={windowHeight - 10}/>}
+        {tenzies && <Confetti width={windowWidth - 5} height={windowHeight - 5}/>}
         <h1 className="heading">Tenzies</h1>
         <p>
           Roll until all dice are the same. Click each die to freeze it at its
