@@ -5,6 +5,8 @@
   width: 100%;
   min-height: 100vh;
   padding: 1em;
+  background-color: blueviolet;
+  overflow: hidden;
 }
 
 .section-container {
@@ -13,6 +15,7 @@
   justify-content: center;
   align-items: center;
   gap: 2em;
+  /* max-width: 500px; */
   padding: 2em 1em;
   border: 1px solid #ccc;
   border-radius: .5em;
@@ -59,10 +62,40 @@ p {
   border: none;
   color: #fff;
   background-color: #5035FF;
+  background-color: blueviolet;
   outline: 0;
   cursor: pointer;
 }
 
 .roll-button:active {
   transform: scale(.95);
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 768px) {
+  .main-container {
+    padding: 3em 5em;
+  }
+
+  .section-container {
+    gap: 3em;
+    padding: 3em 5em;
+  }
+
+  .boxes-list {
+    gap: 1em;
+  }
+
+  .box {
+    width: 3em;
+    height: 3em;
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .section-container {
+    padding: 5em;
+  }
 }
