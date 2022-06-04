@@ -5,22 +5,28 @@ import { nanoid } from 'nanoid';
 
 function App() {
   const [dice, setDice] = useState(allNewDice())
+
+  function generateNewDie() {
+    return {
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+      id: nanoid()
+    }
+  }
   
   function allNewDice() {
     const newDiceArr = [];
     
     for (let i = 0; i < 10; i++) {
-      newDiceArr.push({
-        value: Math.ceil(Math.random() * 10),
-        isHeld: false,
-        id: nanoid()
-      })
+      newDiceArr.push(generateNewDie())
     }
     return newDiceArr
   }
   
   function rollDice() {
-    setDice(allNewDice);
+    setDice(oldDice => oldDice.map(die => {
+        return die.isHeld ? die : generateNewDie()
+    }))
   }
   
   function holdDice(id) {

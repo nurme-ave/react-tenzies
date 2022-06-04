@@ -64,6 +64,5 @@ p {
 }
 
 .roll-button:active {
-  color: #fff;
-  background-color: lightpink;
+  transform: scale(.95);
 }
