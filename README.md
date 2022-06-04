@@ -25,7 +25,7 @@ The page has been built with mobile-first design in mind and is fully responsive
 
 ### Links
 
-- Live Site URL: [Vercel](https://react-weather-app-weld.vercel.app/)
+- Live Site URL: [Vercel](https://react-tenzies-nurme-ave.vercel.app/)
 
 ### Built with
 
