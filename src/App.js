@@ -16,15 +16,16 @@ function App() {
         id: nanoid()
       })
     }
-    console.log(newDiceArr)
     return newDiceArr
   }
   
-  const diceElements = dice.map(die => <Die value={die.value} key={die.id} />)
+  const diceElements = dice.map(die => <Die value={die.value} isHeld={die.isHeld} key={die.id} />)
 
   function rollDice() {
     setDice(allNewDice);
   }
+
+  
 
   return (
     <main className="main-container">
