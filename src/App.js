@@ -47,7 +47,7 @@ function App() {
   }
   
   function rollDice() {
-    if (!tenzies) {
+    if (!tenzies && startCounter()) {
       setCount(prevState => prevState + 1)
       console.log(count)
       setDice(oldDice => oldDice.map(die => {
@@ -75,6 +75,12 @@ function App() {
       key={die.id} 
       holdDice={() => holdDice(die.id)} 
     />)
+
+  function startCounter() {
+    const anyDiceHeld = dice.some(die => die.isHeld)
+    console.log(anyDiceHeld)
+    return anyDiceHeld
+  }
 
 
   return (
