@@ -78,7 +78,6 @@ p {
   }
 
   .section-container {
-    gap: 3em;
     padding: 3em 5em;
     border-radius: .5em;
   }
@@ -90,11 +89,5 @@ p {
   .box {
     width: 3em;
     height: 3em;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .section-container {
-    padding: 5em;
   }
 }
