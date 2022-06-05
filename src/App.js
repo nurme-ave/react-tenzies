@@ -13,13 +13,19 @@ function App() {
   const [count, setCount] = useState(0)
   const [minimumClicks, setMinimumClicks] = useState(() => {
     const localData = localStorage.getItem('score')
-    return localData ? JSON.parse(localData) : []
+    console.log(localData)
+    if (localData === null) {
+      return localStorage.setItem('score', 100)
+    } else {
+      return JSON.parse(localData)
+    }
   })
 
-  console.log(minimumClicks)
+  console.log("line 19", minimumClicks)
 
   useEffect(() => {
-    localStorage.setItem('score', JSON.stringify(minimumClicks))
+    localStorage.setItem('score', minimumClicks)
+    console.log("line 23", minimumClicks)
   }, [minimumClicks])
 
   useEffect(() => {
@@ -64,7 +70,8 @@ function App() {
       }))
     } else {
 
-      if (count < minimumClicks) {
+      const localData = localStorage.getItem('score')
+      if (count < localData) {
         setMinimumClicks(count)
       }
 
@@ -113,7 +120,7 @@ function App() {
           }
         </p>
         <p>
-          {minimumClicks === 100 ?
+          {minimumClicks === null ?
           "Best score:" :
           `Best score: ${minimumClicks}`
           }
