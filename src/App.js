@@ -13,7 +13,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [minimumClicks, setMinimumClicks] = useState(() => {
     const localData = localStorage.getItem('score')
-    return localData ? JSON.parse(localData) : localStorage.setItem('score', 100)
+    return localData ? JSON.parse(localData) : []
   })
 
   console.log(minimumClicks)
