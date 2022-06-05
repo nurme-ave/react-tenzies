@@ -1,5 +1,6 @@
 import './App.css';
 import Die from './components/Die';
+import useLocalStorage from './useLocalStorage';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti'
@@ -11,10 +12,11 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   const [count, setCount] = useState(0)
-  const [minimumClicks, setMinimumClicks] = useState(() => {
-    const localData = localStorage.getItem('score')
-    return localData ? JSON.parse(localData) : localStorage.setItem('score', 100)
-  })
+  const [minimumClicks, setMinimumClicks] = useLocalStorage('score', 100)
+  // const [minimumClicks, setMinimumClicks] = useState(() => {
+  //   const localData = localStorage.getItem('score')
+  //   return localData ? JSON.parse(localData) : localStorage.setItem('score', 100)
+  // })
 
   console.log(minimumClicks)
 
