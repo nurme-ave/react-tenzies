@@ -13,7 +13,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [minimumClicks, setMinimumClicks] = useState(() => {
     const localData = localStorage.getItem('score')
-    return localData ? JSON.parse(localData) : localStorage.setItem('score', 100)
+    return localData ? JSON.parse(localData) : localStorage.setItem('score', JSON.stringify(100))
   })
 
   console.log(minimumClicks)
@@ -95,6 +95,10 @@ function App() {
     return anyDiceHeld
   }
 
+  // function resetGame() {
+
+  // }
+
 
   return (
     <main className="main-container">
@@ -118,6 +122,7 @@ function App() {
           { diceElements }
         </ul>
         <button className="roll-button" onClick={ rollDice }>{tenzies ? "New Game" : "Roll"}</button>
+        {/* <button className="reset-button" onClick={ resetGame }>Reset</button> */}
       </section>
     </main>
   );
