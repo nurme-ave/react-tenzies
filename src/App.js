@@ -11,22 +11,16 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   const [count, setCount] = useState(0)
-  const [minimumClicks, setMinimumClicks] = useState(() => {
-    const localData = localStorage.getItem('score')
-    console.log(localData)
-    if (localData === null) {
-      return localStorage.setItem('score', 100)
-    } else {
-      return JSON.parse(localData)
-    }
-  })
+  // const [minimumClicks, setMinimumClicks] = useState()
 
-  console.log("line 19", minimumClicks)
+  // useEffect(() => {
+  //   localStorage.setItem('score', JSON.stringify(100))
+  // }, [])
 
-  useEffect(() => {
-    localStorage.setItem('score', minimumClicks)
-    console.log("line 23", minimumClicks)
-  }, [minimumClicks])
+  // useEffect(() => {
+  //   localStorage.setItem('score', minimumClicks)
+  //   console.log("line 23", minimumClicks)
+  // }, [minimumClicks])
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -70,10 +64,11 @@ function App() {
       }))
     } else {
 
-      const localData = localStorage.getItem('score')
-      if (count < localData) {
-        setMinimumClicks(count)
-      }
+      // const localData = JSON.parse(localStorage.getItem('score'))
+      // console.log("line 72", localData)
+      // if (count < localData) {
+      //   setMinimumClicks(count)
+      // }
 
       setTenzies(false)
       setCount(0)
@@ -119,12 +114,12 @@ function App() {
           `Clicks: ${count}`
           }
         </p>
-        <p>
+        {/* <p>
           {minimumClicks === null ?
           "Best score:" :
           `Best score: ${minimumClicks}`
           }
-        </p>
+        </p> */}
         <ul className="boxes-list">
           { diceElements }
         </ul>
