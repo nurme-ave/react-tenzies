@@ -11,16 +11,16 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   const [count, setCount] = useState(0)
-  // const [minimumClicks, setMinimumClicks] = useState()
+  const [minimumClicks, setMinimumClicks] = useState(() => {
+    const localData = localStorage.getItem('score')
+    return localData ? JSON.parse(localData) : localStorage.setItem('score', 100)
+  })
 
-  // useEffect(() => {
-  //   localStorage.setItem('score', JSON.stringify(100))
-  // }, [])
+  console.log(minimumClicks)
 
-  // useEffect(() => {
-  //   localStorage.setItem('score', minimumClicks)
-  //   console.log("line 23", minimumClicks)
-  // }, [minimumClicks])
+  useEffect(() => {
+    localStorage.setItem('score', JSON.stringify(minimumClicks))
+  }, [minimumClicks])
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -64,11 +64,9 @@ function App() {
       }))
     } else {
 
-      // const localData = JSON.parse(localStorage.getItem('score'))
-      // console.log("line 72", localData)
-      // if (count < localData) {
-      //   setMinimumClicks(count)
-      // }
+      if (count < minimumClicks) {
+        setMinimumClicks(count)
+      }
 
       setTenzies(false)
       setCount(0)
@@ -97,10 +95,6 @@ function App() {
     return anyDiceHeld
   }
 
-  // function resetGame() {
-
-  // }
-
 
   return (
     <main className="main-container">
@@ -114,17 +108,16 @@ function App() {
           `Clicks: ${count}`
           }
         </p>
-        {/* <p>
-          {minimumClicks === null ?
+        <p>
+          {minimumClicks === 100 ?
           "Best score:" :
           `Best score: ${minimumClicks}`
           }
-        </p> */}
+        </p>
         <ul className="boxes-list">
           { diceElements }
         </ul>
         <button className="roll-button" onClick={ rollDice }>{tenzies ? "New Game" : "Roll"}</button>
-        {/* <button className="reset-button" onClick={ resetGame }>Reset</button> */}
       </section>
     </main>
   );
