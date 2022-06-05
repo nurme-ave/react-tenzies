@@ -13,16 +13,8 @@ function App() {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
   const [count, setCount] = useState(0)
   const [minimumClicks, setMinimumClicks] = useLocalStorage('score', 100)
-  // const [minimumClicks, setMinimumClicks] = useState(() => {
-  //   const localData = localStorage.getItem('score')
-  //   return localData ? JSON.parse(localData) : localStorage.setItem('score', 100)
-  // })
 
   console.log(minimumClicks)
-
-  useEffect(() => {
-    localStorage.setItem('score', JSON.stringify(minimumClicks))
-  }, [minimumClicks])
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -102,20 +94,24 @@ function App() {
     <main className="main-container">
       <section className="section-container">
         {tenzies && <Confetti width={windowWidth - 5} height={windowHeight - 5}/>}
-        <h1 className="heading">Tenzies</h1>
-        <p>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-        <p>
-          {tenzies ? 
-          `Congratulations! It took you ${count} clicks to win.` :
-          `Clicks: ${count}`
-          }
-        </p>
-        <p>
-          {minimumClicks === 100 ?
-          "Best score:" :
-          `Best score: ${minimumClicks}`
-          }
-        </p>
+        <div className="heading-and-instructions">
+          <h1 className="heading">Tenzies</h1>
+          <p>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+        </div>
+        <div className="clicks">
+          <p>
+            {tenzies ?
+            `Congratulations! It took you ${count} clicks to win.` :
+            `Clicks: ${count}`
+            }
+          </p>
+          <p>
+            {minimumClicks === 100 ?
+            "Best score: 0" :
+            `Best score: ${minimumClicks}`
+            }
+          </p>
+        </div>
         <ul className="boxes-list">
           { diceElements }
         </ul>
