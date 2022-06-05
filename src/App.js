@@ -49,7 +49,6 @@ function App() {
   function rollDice() {
     if (!tenzies && startCounter()) {
       setCount(prevState => prevState + 1)
-      console.log(count)
       setDice(oldDice => oldDice.map(die => {
           return die.isHeld ? die : generateNewDie()
       }))
@@ -78,7 +77,6 @@ function App() {
 
   function startCounter() {
     const anyDiceHeld = dice.some(die => die.isHeld)
-    console.log(anyDiceHeld)
     return anyDiceHeld
   }
 
@@ -88,10 +86,12 @@ function App() {
       <section className="section-container">
         {tenzies && <Confetti width={windowWidth - 5} height={windowHeight - 5}/>}
         <h1 className="heading">Tenzies</h1>
+        <p>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
         <p>
           {tenzies ? 
-          `Congratulations! It took you ${count} clicks to win.` : 
-          "Roll until all dice are the same. Click each die to freeze it at its current value between rolls."}
+          `Congratulations! It took you ${count} clicks to win.` :
+          `Clicks: ${count}`
+          }
         </p>
         <ul className="boxes-list">
           { diceElements }
