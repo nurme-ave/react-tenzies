@@ -3,128 +3,134 @@ import Die from './components/Die';
 import useLocalStorage from './useLocalStorage';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
-import Confetti from 'react-confetti'
-
+import Confetti from 'react-confetti';
 
 function App() {
-  const [dice, setDice] = useState(allNewDice())
-  const [tenzies, setTenzies] = useState(false)
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-  const [count, setCount] = useState(0)
-  const [minimumClicks, setMinimumClicks] = useLocalStorage('score', 100)
+  const [dice, setDice] = useState(allNewDice());
+  const [tenzies, setTenzies] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [count, setCount] = useState(0);
+  const [minimumClicks, setMinimumClicks] = useLocalStorage('score', 100);
 
-  console.log(minimumClicks)
-
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setWindowWidth(window.innerWidth)
-      setWindowHeight(window.innerHeight)
-      })
-    }, [])
+  console.log(minimumClicks);
 
   useEffect(() => {
-    const allDiceHeld = dice.every(die => die.isHeld)
-    const firstValue = dice[0].value
-    const allSameValue = dice.every(die => die.value === firstValue)
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+    });
+  }, []);
+
+  useEffect(() => {
+    const allDiceHeld = dice.every((die) => die.isHeld);
+    const firstValue = dice[0].value;
+    const allSameValue = dice.every((die) => die.value === firstValue);
 
     if (allDiceHeld && allSameValue) {
-      setTenzies(true)
+      setTenzies(true);
     }
-  }, [dice])
-  
+  }, [dice]);
+
   function generateNewDie() {
     return {
       value: Math.ceil(Math.random() * 6),
       isHeld: false,
-      id: nanoid()
-    }
+      id: nanoid(),
+    };
   }
-  
+
   function allNewDice() {
     const newDiceArr = [];
-    
+
     for (let i = 0; i < 10; i++) {
-      newDiceArr.push(generateNewDie())
+      newDiceArr.push(generateNewDie());
     }
-    return newDiceArr
+    return newDiceArr;
   }
-  
+
   function rollDice() {
     if (!tenzies && startCounter()) {
-      setCount(prevState => prevState + 1)
-      setDice(oldDice => oldDice.map(die => {
-          return die.isHeld ? die : generateNewDie()
-      }))
+      setCount((prevState) => prevState + 1);
+      setDice((oldDice) =>
+        oldDice.map((die) => {
+          return die.isHeld ? die : generateNewDie();
+        })
+      );
+    } else if (!tenzies && !startCounter()) {
+      setDice(allNewDice);
     } else {
-
       if (count < minimumClicks) {
-        setMinimumClicks(count)
+        setMinimumClicks(count);
       }
-
-      setTenzies(false)
-      setCount(0)
-      setDice(allNewDice)
+      setTenzies(false);
+      setCount(0);
+      setDice(allNewDice);
     }
   }
-  
+
   function holdDice(id) {
-    setDice(prevState => {
+    setDice((prevState) => {
       return prevState.map((die) => {
-        return die.id === id ? {...die, isHeld: !die.isHeld} : die
-      })
-    }) 
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      });
+    });
   }
-  
-  const diceElements = dice.map(die => 
-    <Die 
-      value={die.value} 
-      isHeld={die.isHeld} 
-      key={die.id} 
-      holdDice={() => holdDice(die.id)} 
-    />)
+
+  const diceElements = dice.map((die) => (
+    <Die
+      value={die.value}
+      isHeld={die.isHeld}
+      key={die.id}
+      holdDice={() => holdDice(die.id)}
+    />
+  ));
 
   function startCounter() {
-    const anyDiceHeld = dice.some(die => die.isHeld)
-    return anyDiceHeld
+    const anyDiceHeld = dice.some((die) => die.isHeld);
+    return anyDiceHeld;
   }
 
   function reset() {
-    setCount(0)
-    setDice(allNewDice)
+    setCount(0);
+    setDice(allNewDice);
   }
-
 
   return (
     <main className="main-container">
       <section className="section-container">
-        {tenzies && <Confetti width={windowWidth - 5} height={windowHeight - 5}/>}
+        {tenzies && (
+          <Confetti width={windowWidth - 5} height={windowHeight - 5} />
+        )}
         <div className="heading-and-instructions">
           <h1 className="heading">Tenzies</h1>
-          <p>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+          <p>
+            Roll until all dice are the same. Click each die to freeze it at its
+            current value between rolls.
+          </p>
         </div>
         <div className="clicks">
           <p>
-            {tenzies ?
-            `Congratulations! It took you ${count} clicks to win.` :
-            `Clicks: ${count}`
-            }
+            {tenzies
+              ? `Congratulations! It took you ${count} clicks to win.`
+              : `Clicks: ${count}`}
           </p>
           <p>
-            {minimumClicks === 100 ?
-            "Best score: 0" :
-            `Best score: ${minimumClicks}`
-            }
+            {minimumClicks === 100
+              ? 'Best score: 0'
+              : `Best score: ${minimumClicks}`}
           </p>
         </div>
-        <ul className="boxes-list">
-          { diceElements }
-        </ul>
+        <ul className="boxes-list">{diceElements}</ul>
         <div className="buttons">
-          {!tenzies && 
-          <button className="roll-button reset-button" onClick={ reset }>Reset</button>
-          }
-          <button className="roll-button" onClick={ rollDice }>{tenzies ? "New Game" : "Roll"}</button>
+          {!tenzies && (
+            <button className="roll-button reset-button" onClick={reset}>
+              Reset
+            </button>
+          )}
+          <button className="roll-button" onClick={rollDice}>
+            {tenzies ? 'New Game' : 'Roll'}
+          </button>
         </div>
       </section>
     </main>
