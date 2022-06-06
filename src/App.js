@@ -89,6 +89,11 @@ function App() {
     return anyDiceHeld
   }
 
+  function reset() {
+    setCount(0)
+    setDice(allNewDice)
+  }
+
 
   return (
     <main className="main-container">
@@ -115,7 +120,12 @@ function App() {
         <ul className="boxes-list">
           { diceElements }
         </ul>
-        <button className="roll-button" onClick={ rollDice }>{tenzies ? "New Game" : "Roll"}</button>
+        <div className="buttons">
+          {!tenzies && 
+          <button className="roll-button reset-button" onClick={ reset }>Reset</button>
+          }
+          <button className="roll-button" onClick={ rollDice }>{tenzies ? "New Game" : "Roll"}</button>
+        </div>
       </section>
     </main>
   );

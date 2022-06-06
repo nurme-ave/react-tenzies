@@ -69,10 +69,16 @@ p {
   gap: .75em;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2em;
+}
+
 .roll-button {
   padding: .75em 1em;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -87,6 +93,10 @@ p {
 
 .roll-button:active {
   transform: scale(.95);
+}
+
+.reset-button {
+  background-color: red;
 }
 
 
@@ -108,5 +118,13 @@ p {
   .box {
     width: 3em;
     height: 3em;
+  }
+
+  .roll-button {
+    font-size: 1.3rem;
+  }
+
+  .buttons {
+    gap: 1.5em;
   }
 }
