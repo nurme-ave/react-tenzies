@@ -1,6 +1,6 @@
 # Tenzies - React App
 
-This is a personal project built by [Ave Nurme](https://www.avenurme.dev).
+This is a project built at my Scrimba React course with Bob Ziroll.
 
 ## Table of contents
 
@@ -15,7 +15,21 @@ This is a personal project built by [Ave Nurme](https://www.avenurme.dev).
 
 ### Project Description
 
-This was a React project which was created during the React Basics course at Scrimba.
+Tenzies is a game where you roll the dice and you need to get all the dice on the same number.
+
+We were practising building the game logic using useState(), useEffect() and conditional rendering. We also added Nano ID for generating random ID's since React requires keys with unique ID's when creating lists of elements. In addition, we also implemented the Confetti component to draw falling confettis when the user has won the game.
+
+Features I added myself:
+- track the number of rolls
+- save the lowest number of rolls into the localStorage
+- add a RESET button in case the user wishes to start the game over
+
+New things learned:
+- the every() JS method which checks if all the dice held have the same value
+- the some() JS method which checks it at least one of the dice is held
+- conditional rendering
+- Nano ID & Confetti component
+- you can use useEffect() not only to perform side effects but to synchronize states
 
 The page has been built with mobile-first design in mind and is fully responsive.
 
