@@ -13,8 +13,6 @@ function App() {
   const [count, setCount] = useState(0);
   const [minimumClicks, setMinimumClicks] = useLocalStorage('score', 100);
 
-  console.log(minimumClicks);
-
   useEffect(() => {
     window.addEventListener('resize', () => {
       setWindowWidth(window.innerWidth);
@@ -124,11 +122,11 @@ function App() {
         <ul className="boxes-list">{diceElements}</ul>
         <div className="buttons">
           {!tenzies && (
-            <button className="roll-button reset-button" onClick={reset}>
+            <button className="button reset-button" onClick={reset}>
               Reset
             </button>
           )}
-          <button className="roll-button" onClick={rollDice}>
+          <button className="button" onClick={rollDice}>
             {tenzies ? 'New Game' : 'Roll'}
           </button>
         </div>

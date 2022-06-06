@@ -75,23 +75,22 @@ p {
   gap: 1.2em;
 }
 
-.roll-button {
+.button {
+  width: 8em;
   padding: .75em 1em;
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: .1em;
   border-radius: .5em;
   border: none;
-  color: #fff;
-  background-color: #5035FF;
-  background-color: blueviolet;
+  color: #000;
+  background-color: #59E391;
   outline: 0;
   cursor: pointer;
 }
 
-.roll-button:active {
+.button:active {
   transform: scale(.95);
 }
 
@@ -120,7 +119,7 @@ p {
     height: 3em;
   }
 
-  .roll-button {
+  .button {
     font-size: 1.3rem;
   }
 
