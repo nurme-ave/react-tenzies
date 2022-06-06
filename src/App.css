@@ -84,8 +84,8 @@ p {
   text-transform: uppercase;
   border-radius: .5em;
   border: none;
-  color: #000;
-  background-color: #59E391;
+  color: #fff;
+  background-color: blueviolet;
   outline: 0;
   cursor: pointer;
 }
