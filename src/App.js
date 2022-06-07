@@ -1,5 +1,6 @@
 import './App.css';
 import Die from './components/Die';
+import Button from './components/Button';
 import useLocalStorage from './useLocalStorage';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
@@ -89,11 +90,6 @@ function App() {
     return anyDiceHeld;
   }
 
-  function reset() {
-    setCount(0);
-    setDice(allNewDice);
-  }
-
   return (
     <main className="main-container">
       <section className="section-container">
@@ -121,14 +117,8 @@ function App() {
         </div>
         <ul className="boxes-list">{diceElements}</ul>
         <div className="buttons">
-          {!tenzies && (
-            <button className="button reset-button" onClick={reset}>
-              Reset
-            </button>
-          )}
-          <button className="button" onClick={rollDice}>
-            {tenzies ? 'New Game' : 'Roll'}
-          </button>
+          {!tenzies && (<Button handleClick={() => {setCount(0); setDice(allNewDice)}} text="Reset" backgroundColor="red" />)}
+          <Button handleClick={rollDice} text={tenzies ? 'New Game' : 'Roll'} backgroundColor="blueviolet" />
         </div>
       </section>
     </main>

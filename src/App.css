@@ -85,17 +85,12 @@ p {
   border-radius: .5em;
   border: none;
   color: #fff;
-  background-color: blueviolet;
   outline: 0;
   cursor: pointer;
 }
 
 .button:active {
   transform: scale(.95);
-}
-
-.reset-button {
-  background-color: red;
 }
 
 
