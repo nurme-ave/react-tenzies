@@ -22,6 +22,7 @@ We were practising building the game logic using useState(), useEffect() and con
 Features I added myself:
 - track the number of rolls
 - save the lowest number of rolls into the localStorage
+- create my own Button component
 - add a RESET button in case the user wishes to start the game over
 
 New things learned:
