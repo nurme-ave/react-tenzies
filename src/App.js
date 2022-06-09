@@ -12,7 +12,7 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [count, setCount] = useState(0);
-  const [minimumClicks, setMinimumClicks] = useLocalStorage('score', 100);
+  const [minimumRolls, setMinimumRolls] = useLocalStorage('score', 100);
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -59,8 +59,8 @@ function App() {
     } else if (!tenzies && !startCounter()) {
       setDice(allNewDice);
     } else {
-      if (count < minimumClicks) {
-        setMinimumClicks(count);
+      if (count < minimumRolls) {
+        setMinimumRolls(count);
       }
       setTenzies(false);
       setCount(0);
@@ -103,16 +103,16 @@ function App() {
             current value between rolls.
           </p>
         </div>
-        <div className="clicks">
+        <div className="rolls">
           <p>
             {tenzies
-              ? `Congratulations! It took you ${count} clicks to win.`
-              : `Clicks: ${count}`}
+              ? `Congratulations! It took you ${count} rolls to win.`
+              : `Rolls: ${count}`}
           </p>
           <p>
-            {minimumClicks === 100
+            {minimumRolls === 100
               ? 'Best score: 0'
-              : `Best score: ${minimumClicks}`}
+              : `Best score: ${minimumRolls}`}
           </p>
         </div>
         <ul className="boxes-list">{diceElements}</ul>
