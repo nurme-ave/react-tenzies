@@ -1,6 +1,6 @@
 # Tenzies - React App
 
-This is a project built at my Scrimba React course with Bob Ziroll.
+Tenzies is a game where you roll the dice and you need to get all the dice on the same number.
 
 ## Table of contents
 
@@ -15,22 +15,13 @@ This is a project built at my Scrimba React course with Bob Ziroll.
 
 ### Project Description
 
-Tenzies is a game where you roll the dice and you need to get all the dice on the same number.
+In this React project I'm utilizing the useState hook to keep track of the changes of the dice, the number of rolls in each game, and also the lowest number of rolls. The latter is saved in localStorage for which I am using a custom hook. I'm also making use of the useEffect hook to synchronize states and check if the game is over or not. In useEffect the JavaScript every() method was useful which checked if all the dice held have the same value.
 
-We were practising building the game logic using useState(), useEffect() and conditional rendering. We also added Nano ID for generating random ID's since React requires keys with unique ID's when creating lists of elements. In addition, we also implemented the Confetti component to draw falling confettis when the user has won the game.
+Since React requires keys with unique ID's when creating lists of elements I installed NanoID which is a unique string ID generator for JavaScript.
 
-Features I added myself:
-- track the number of rolls
-- save the lowest number of rolls into the localStorage
-- create my own Button component
-- add a RESET button in case the user wishes to start the game over
+The app will not start counting the rolls unless at least one die is held. The JavaScript some() method came handy here which checks exactly that. 
 
-New things learned:
-- the every() JS method which checks if all the dice held have the same value
-- the some() JS method which checks it at least one of the dice is held
-- conditional rendering
-- Nano ID & Confetti component
-- you can use useEffect() not only to perform side effects but to synchronize states
+When the player has managed to get all the dice on the same number the Confetti component draws falling confettis on the screen :). You're welcome to play and try your luck! :)
 
 The page has been built with mobile-first design in mind and is fully responsive.
 
